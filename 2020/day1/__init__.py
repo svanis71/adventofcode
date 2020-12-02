@@ -1,8 +1,8 @@
-from indata import readIntList
+from indata import read_list_of_integers
 
 
 def part1():
-    input_data = readIntList('day1')
+    input_data = read_list_of_integers('day1')
     while len(input_data) > 0:
         n1 = input_data.pop(0)
         nl2 = [n2 for n2 in input_data if n1 + n2 == 2020]
@@ -11,7 +11,7 @@ def part1():
 
 
 def part2():
-    input_data = readIntList('day1')
+    input_data = read_list_of_integers('day1')
     while len(input_data) > 0:
         n1 = input_data.pop(0)
         for n2 in [x for x in input_data if n1 + x < 2020]:
