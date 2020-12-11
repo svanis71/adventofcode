@@ -4,6 +4,7 @@ import day3
 import day4
 import day5
 import day6
+import day8
 
 if __name__ == '__main__':
     day1.run()
@@ -12,3 +13,5 @@ if __name__ == '__main__':
     day4.run()
     day5.run()
     day6.run()
+    #day7.run()
+    day8.run()
