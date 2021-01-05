@@ -1,13 +1,15 @@
+from collections import defaultdict
+
+
 def part1(indata, max_turns=2020):
-    previous = {}
+    previous = defaultdict(int)
     for ix, n in enumerate(indata):
         previous[int(n)] = ix + 1
 
-    nextprevious, turn, lastspoken = {}, len(previous) + 1, 0
+    nextprevious, turn, lastspoken = defaultdict(int), len(previous) + 1, 0
     while True:
-        lastspoken = 0 if not lastspoken in nextprevious else previous[lastspoken] - nextprevious[lastspoken]
-        if lastspoken in previous:
-            nextprevious[lastspoken] = previous[lastspoken]
+        lastspoken = 0 if nextprevious[lastspoken] == 0 else previous[lastspoken] - nextprevious[lastspoken]
+        nextprevious[lastspoken] = previous[lastspoken]
         previous[lastspoken] = turn
         turn += 1
         if turn > max_turns:
