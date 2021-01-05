@@ -1,35 +1,25 @@
-from collections import defaultdict
-
-
 def part1(indata, max_turns=2020):
-    turn, lastspoken = 1, 0
-    history = defaultdict(list)
     previous = {}
-    nextprevious = {}
+    for ix, n in enumerate(indata):
+        previous[int(n)] = ix + 1
+
+    nextprevious, turn, lastspoken = {}, len(previous) + 1, 0
     while True:
-        if len(indata) > 0:
-            lastspoken = int(indata.pop(0))
-        else:
-            if len(history[lastspoken]) <= 1:
-                lastspoken = 0
-            else:
-                # lastspoken = previous[lastspoken]
-                lastspoken = history[lastspoken][0] - history[lastspoken][1]
-        history[lastspoken].insert(0, turn)
+        lastspoken = 0 if not lastspoken in nextprevious else previous[lastspoken] - nextprevious[lastspoken]
+        if lastspoken in previous:
+            nextprevious[lastspoken] = previous[lastspoken]
+        previous[lastspoken] = turn
         turn += 1
         if turn > max_turns:
             break
     return lastspoken
 
 
-
-
 def part2(indata):
-    return part1(indata, 30*10**6)
+    return part1(indata, 30 * 10 ** 6)
 
 
 def run():
-    print(f'Day 14 part 1: {part1("1,12,0,20,8,16".split(","))}')
-    print(f'Day 14 part 2: {part2("3,1,2".split(","))}')
-
-run()
+    indata = '1,12,0,20,8,16'.split(',')
+    print(f'Day 14 part 1: {part1(indata)}')
+    print(f'Day 14 part 2: {part2(indata)}')
