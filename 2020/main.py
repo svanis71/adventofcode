@@ -5,6 +5,7 @@ import day12
 import day13
 import day14
 import day15
+import day16
 import day2
 import day3
 import day4
@@ -12,6 +13,11 @@ import day5
 import day6
 import day8
 import day9
+
+with open('indata/day16.txt') as f:
+    indata = f.read().split(('\n\n'))
+
+print(day16.part2(indata))
 
 if __name__ == '__main__':
     day1.run()
@@ -30,3 +36,4 @@ if __name__ == '__main__':
     day13.run()
     day14.run()
     day15.run()
+    day16.run()
