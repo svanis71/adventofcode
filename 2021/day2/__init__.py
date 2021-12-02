@@ -33,3 +33,6 @@ def part2():
 def run():
     print(f'Day 2 pt1: {part1()}')
     print(f'Day 2 pt2: {part2()}')
+
+# Day 2 pt1: 1451208
+# Day 2 pt2: 1620141160
