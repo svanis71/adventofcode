@@ -1,5 +1,6 @@
 from indata import read_list_of_integers
 
+
 def part1(input):
     return [1 for i,j in zip(input, input[1:]) if j > i].count(1)
 
