@@ -12,20 +12,20 @@ def get_pivot(numbers):
     return pivot
 
 
-def calc_oxygen_generator_rate(bit, numbers):
+def oxygen_generator_rate(bit, numbers):
     if len(numbers) == 1:
         return numbers[0]
     pivot = get_pivot(numbers)
     most_common = '1' if pivot[bit].count('1') >= pivot[bit].count('0') else '0'
-    return calc_oxygen_generator_rate(bit + 1, [n for n in numbers if n[bit] == most_common])
+    return oxygen_generator_rate(bit + 1, [n for n in numbers if n[bit] == most_common])
 
 
-def calc_co2_scrubber_rate(bit, numbers):
+def co2_scrubber_rate(bit, numbers):
     if len(numbers) == 1:
         return numbers[0]
     pivot = get_pivot(numbers)
     least_common = '1' if pivot[bit].count('1') < pivot[bit].count('0') else '0'
-    return calc_co2_scrubber_rate(bit + 1, [n for n in numbers if n[bit] == least_common])
+    return co2_scrubber_rate(bit + 1, [n for n in numbers if n[bit] == least_common])
 
 
 def part1():
@@ -38,9 +38,7 @@ def part1():
 
 def part2():
     report = read_list_of_strings('day3')
-    oxygen_generator_rate = calc_oxygen_generator_rate(0, report)
-    co2_scrubber_rate = calc_co2_scrubber_rate(0, report)
-    return int(oxygen_generator_rate, 2) * int(co2_scrubber_rate, 2)
+    return int(oxygen_generator_rate(0, report), 2) * int(co2_scrubber_rate(0, report), 2)
 
 
 def run():
