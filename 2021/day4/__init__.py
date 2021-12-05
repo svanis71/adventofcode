@@ -9,17 +9,20 @@ class Board:
     def score(self, drawn_numbers):
         for y in range(0, 5):
             if set(self.board[y]).issubset(drawn_numbers) or set(self.pivot_board[y]).issubset(drawn_numbers):
-                print(f'Bingo! Last number was {drawn_numbers[0]}')
-                for line in self.board:
-                    for num in line:
-                        if num in drawn_numbers:
-                            print(f' \033[94m\033[1m{num:2}\033[0m', end='')
-                        else:
-                            print(f' {num:2}', end='')
-                    print()
+                # self.bingo(drawn_numbers)
                 return sum([sum(set(x for x in line).difference(drawn_numbers)) for line in self.board]) * \
                        drawn_numbers[0]
         return 0
+
+    def bingo(self, drawn_numbers):
+        print(f'Bingo! Last number was {drawn_numbers[0]}')
+        for line in self.board:
+            for num in line:
+                if num in drawn_numbers:
+                    print(f' \033[94m\033[1m{num:2}\033[0m', end='')
+                else:
+                    print(f' {num:2}', end='')
+            print()
 
 
 def create_bingo_game():
