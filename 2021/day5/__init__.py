@@ -4,7 +4,7 @@ from indata import read_list_of_strings
 
 def part1():
     matrix = defaultdict(int)
-    lines = read_list_of_strings('day5')
+    lines = read_list_of_strings('day5_test')
     for line in lines:
         pt1, pt2 = line.replace(' ', '').split('->')
         x1,y1 = pt1.split(',')
