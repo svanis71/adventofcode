@@ -4,7 +4,7 @@ from indata import read_list_of_strings
 
 def part1():
     matrix = defaultdict(int)
-    lines = read_list_of_strings('day5_test')
+    lines = read_list_of_strings('day5')
     for line in lines:
         pt1, pt2 = line.replace(' ', '').split('->')
         x1,y1 = pt1.split(',')
@@ -17,7 +17,13 @@ def part1():
                 matrix[f'{x},{y1}'] += 1
         else: 
             print(f'Skipping {x1},{y1} {x2},{y2}')
-    return len([x for x in matrix.values() if x > 1])
+    cnt = 0
+    for k,v in matrix.items():
+        if v > 1:
+#            print(f'{k}: {v}')
+            cnt += 1
+    return cnt
+
 
 
 def part2():
