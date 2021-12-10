@@ -23,7 +23,7 @@ def part2():
 
 def run():
     print(f'Day 7 pt1: {part1()}')
-    print(f'Day 7 pt2: {part2()}')
+    # print(f'Day 7 pt2: {part2()}')
 
 
 # Day 7 pt1: (331, 349769)
