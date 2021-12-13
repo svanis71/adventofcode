@@ -24,7 +24,6 @@ def part2():
     fishtionary = {0: lanternfishes.count(0), 1: lanternfishes.count(1), 2: lanternfishes.count(2),
                    3: lanternfishes.count(3), 4: lanternfishes.count(4), 5: lanternfishes.count(5),
                    6: lanternfishes.count(6), 7: lanternfishes.count(7), 8: lanternfishes.count(8)}
-    print(f'Initial state: {[(k, fishtionary[k]) for k in sorted(fishtionary.keys())]}')
     for day in range(256):
         new_day = defaultdict(int)
         for (age, cnt) in fishtionary.items():
