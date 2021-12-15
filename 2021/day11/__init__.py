@@ -1,6 +1,4 @@
-import os, time
 from indata import read_list_of_strings
-
 
 '''
 You can model the energy levels and flashes of light in steps. During a single step, the following occurs:
@@ -46,10 +44,11 @@ After step 2:
 8700006848
 '''
 
+
 def find_adjacents(grid, x, y):
     adjacent_squares = ((0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1),)
-    return [ (x + xoffset, y + yoffset) for (xoffset, yoffset) in adjacent_squares 
-        if x + xoffset in range(len(grid[y]) and y + yoffset in range(grid))]
+    a = [(x + xoffset, y + yoffset) for (xoffset, yoffset) in adjacent_squares]
+    return [(x, y) for (x, y) in a if x in range(len(grid[0])) and y in range(len(grid))]
 
 
 def update_grid(grid):
@@ -58,57 +57,56 @@ def update_grid(grid):
         for ic, c in enumerate(r):
             if c > 9:
                 ng[ir][ic] = 0
-                
+
     return ng
 
 
+def do_step(grid, blink_cnt=0):
+    ng = [[c + 1 for c in r] for r in grid]
+    has_flashed = []
+    while True:
+        flashed = []
+        for iy, row in enumerate(ng):
+            for ix, colval in enumerate(row):
+                if ng[iy][ix] > 9 and not (ix, iy) in has_flashed:
+                    flashed.append((ix, iy))
+                    for (nx, ny) in find_adjacents(ng, ix, iy):
+                        ng[ny][nx] += 1
+        if len(flashed) == 0:
+            break
+        has_flashed.extend(flashed)
+    for iy, row in enumerate(ng):
+        for ix, colval in enumerate(row):
+            if colval > 9:
+                ng[iy][ix] = 0
+                blink_cnt += 1
+    return ng, blink_cnt
+
+
 def part1():
-    grid = [[int(i) for i in s] for s in (read_list_of_strings('day11_test'))]
+    grid = [[int(i) for i in s] for s in (read_list_of_strings('day11'))]
     blink_cnt = 0
 
-    for step in range(2):
-        # os.system('clear')
-        print(f'Step #{step + 1}')
-        ng = [[c + 1 for c in r] for r in grid]
-        blink_list = [(ir, ic) for ir,r in enumerate(grid) for ic, c in enumerate(r) if c > 9]
-        
-        # time.sleep(0.5)
+    for step in range(100):
+        grid, blink_cnt = do_step(grid, blink_cnt)
 
     return blink_cnt
 
+
 def part2():
-    pass
+    grid = [[int(i) for i in s] for s in (read_list_of_strings('day11'))]
+    step, all_flashed, octopusses = 0, False, len(grid) * len(grid[0])
+    while not all_flashed:
+        step += 1
+        (grid, ign) = do_step(grid=grid)
+        all_flashed = [colval for row in grid for colval in row].count(0) == octopusses
+
+    return step
+
 
 def run():
     print(f'Day 11 pt1: {part1()}')
     print(f'Day 11 pt2: {part2()}')
 
-
-# Day 11 pt1: 
-# Day 11 pt2: 
-
-    # os.system('clear')
-    # for r in grid:
-    #     for c in r:
-    #         print(f'{c} ', end='')
-    #     print()
-    # time.sleep(0.1)
-
-
-
-#        ng_1d = [val for cols in grid for val in cols]
-#        blink_cnt = 0
-
-        # blink_list = []
-        # for ir, r in enumerate(ng):
-        #     for ic, c in enumerate(r):
-        #         if c > 9:
-        #             ng[ir][ic] = 0
-        #             blink_list.append
-
-
-        # for r in grid:
-        #     for c in r:
-        #         print(f'{c} ', end='')
-        #     print('')
-        # print()
+# Day 11 pt1: 1627
+# Day 11 pt2: 329
