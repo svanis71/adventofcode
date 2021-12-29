@@ -77,5 +77,15 @@ def run():
     print(f'Day 13 pt1: {part1(folding_instructions, paper)}')
     print(f'Day 13 pt2: {part2(folding_instructions, paper)}')
 
+
 # Day 13 pt1: 842
 # Day 13 pt2: BFKRCJZU
+
+'''
+***  **** *  * ***   **    ** **** *  * 
+*  * *    * *  *  * *  *    *    * *  * 
+***  ***  **   *  * *       *   *  *  * 
+*  * *    * *  ***  *       *  *   *  * 
+*  * *    * *  * *  *  * *  * *    *  * 
+***  *    *  * *  *  **   **  ****  ** 
+'''
