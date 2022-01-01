@@ -1,8 +1,11 @@
-from indata import read_list_of_strings
+from re import findall
 
 
 def part1():
-    pass
+    target_area = open('indata/day17.txt').readline().rstrip()
+    _, _, ymin, _ = [int(x) for x in findall(r'(-?\d+)', target_area)]
+    # Sum 1 to ymin
+    return ymin * (ymin + 1) // 2
 
 def part2():
     pass
