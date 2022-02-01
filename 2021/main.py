@@ -8,6 +8,7 @@ import day15
 import day16
 import day17
 import day2
+import day20
 import day3
 import day4
 import day5
@@ -18,7 +19,7 @@ import day9
 
 # insert import before (don't remove this line)
 
-runall = False
+runall = True
 if __name__ == '__main__':
     if runall:
         day1.run()
@@ -37,4 +38,5 @@ if __name__ == '__main__':
         day14.run()
         day15.run()
         day16.run()
-    day17.run()
+        day17.run()
+        day20.run()
