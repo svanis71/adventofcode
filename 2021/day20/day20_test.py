@@ -1,5 +1,4 @@
 import unittest
-from datetime import datetime
 
 from day20 import calc_algo_value, solve
 
@@ -18,14 +17,11 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(34, calc_algo_value(2, 2, image_data, 0))
 
     def test_simple_p1(self):
-        start = datetime.now()
         enhanced_image, light_bits = solve(self.indata.splitlines(False), 2)
         for row in enhanced_image:
             for bit in row:
                 print('.' if bit == 0 else '#', end='')
             print()
-        dur = (datetime.now() - start)
-        print(dur)
         self.assertEqual(35, [bit for row in enhanced_image for bit in row].count(1))  # add assertion here
 
 
