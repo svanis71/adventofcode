@@ -1,17 +1,20 @@
+"""
+AoC 22 day 1
+"""
+from itertools import groupby
+
 from indata import read_list_of_strings
 
 
-def part1():
-    pass
-
-def part2():
-    pass
-
 def run():
-    print(f'Day 1 pt1: {part1()}')
-    print(f'Day 1 pt2: {part2()}')
+    """
+    AoC 22 day 1
+    """
+    elfes_inventory = groupby(read_list_of_strings('day1'), lambda z: z == '')
+    inventory = sorted([sum(int(i) for i in list(y)) for x, y in elfes_inventory if not x],
+                       reverse=True)[0:3]
+    print(f'Day 1 pt1: {max(inventory)}')
+    print(f'Day 1 pt2: {sum(inventory)}')
 
-
-# Day 1 pt1: 
-# Day 1 pt2: 
-
+# Day 1 pt1: 69206
+# Day 1 pt2: 197400
