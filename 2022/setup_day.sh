@@ -28,3 +28,5 @@ sed "/^\# insert import before/i import day${day}" main.py > main_tmp.py
 mv main_tmp.py main.py
 
 echo "        day${day}.run()" >> main.py
+echo "        print(f'Time: {perf_counter() - start} seconds')" >> main.py
+echo "        start = perf_counter()" >> main.py
