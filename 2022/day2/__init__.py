@@ -1,4 +1,4 @@
-from indata import read_list_of_strings
+from indata import read_list_of_strings, read_infile
 
 
 def points_in_round(me: str, opponent: str) -> int:
