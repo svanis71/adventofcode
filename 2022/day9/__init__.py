@@ -1,99 +1,49 @@
 from indata import read_list_of_strings
 
 
-def part1():
-    moves = [d.split(' ') for d in read_list_of_strings('day9')]
-    head_pos, tail_pos = {"x": 0, "y": 0}, {"x": 0, "y": 0}
-    head_path, tail_path = [(head_pos["x"], head_pos["y"])], [(tail_pos["x"], tail_pos["y"])]
+def move_head(dir, rope):
+    match dir:
+        case 'U':
+            rope[0] = (rope[0][0], rope[0][1] - 1)
+        case 'D':
+            rope[0] = (rope[0][0], rope[0][1] + 1)
+        case 'L':
+            rope[0] = (rope[0][0] - 1, rope[0][1])
+        case 'R':
+            rope[0] = (rope[0][0] + 1, rope[0][1])
+
+
+def follow_head(rope):
+    for ti, t in enumerate(rope[1:], 1):
+        diff_y = rope[ti - 1][0] - rope[ti][0]
+        diff_x = rope[ti - 1][1] - rope[ti][1]
+
+        if diff_y != 0:
+            diff_y -= 1 if diff_y > 0 else -1
+
+        if diff_x != 0:
+            diff_x -= 1 if diff_x > 0 else -1
+
+        if diff_y or diff_x:
+            rope[ti] = (rope[ti - 1][0] - diff_y, rope[ti - 1][1] - diff_x)
+
+
+def day9_12(moves: list[list[str]], rope_len: int) -> int:
+    rope = [(0, 0) for _ in range(rope_len)]
+    tail_path = set()
+
     for dir, steps in moves:
         for _ in range(int(steps)):
-            # URLD
-            match dir:
-                case 'U':
-                    head_pos["y"] -= 1
-                    if tail_pos["y"] > head_pos["y"] + 1:
-                        tail_pos["y"] -= 1
-                        if tail_pos["x"] != head_pos["x"]:
-                            tail_pos["x"] = head_pos["x"]
-                case 'D':
-                    head_pos["y"] += 1
-                    if tail_pos["y"] < head_pos["y"] - 1:
-                        tail_pos["y"] += 1
-                        if tail_pos["x"] != head_pos["x"]:
-                            tail_pos["x"] = head_pos["x"]
-                case 'L':
-                    head_pos["x"] -= 1
-                    if tail_pos["x"] > head_pos["x"] + 1:
-                        tail_pos["x"] -= 1
-                        if tail_pos["y"] != head_pos["y"]:
-                            tail_pos["y"] = head_pos["y"]
-                case 'R':
-                    head_pos["x"] += 1
-                    if tail_pos["x"] < head_pos["x"] - 1:
-                        tail_pos["x"] += 1
-                        if tail_pos["y"] != head_pos["y"]:
-                            tail_pos["y"] = head_pos["y"]
-            tail_path.append((tail_pos["x"], tail_pos["y"]))
-            head_path.append((head_pos["x"], head_pos["y"]))
-    return len(set(tail_path))
+            move_head(dir, rope)
+            follow_head(rope)
+            tail_path.add(rope[-1])
+    return len(tail_path)
 
-
-def part2():
-    moves = [d.split(' ') for d in read_list_of_strings('day9', is_testdata=True)]
-    head_pos, head_path = {"x": 0, "y": 0}, [(0, 0)]
-    tail, tailpath = [{"x": 0, "y": 0} for _ in range(10)], [(0, 0) for _ in range(10)]
-    for dir, steps in moves:
-        for _ in range(int(steps)):
-            # URLD
-            match dir:
-                case 'U':
-                    head_pos["y"] -= 1
-                case 'D':
-                    head_pos["y"] += 1
-                case 'L':
-                    head_pos["x"] -= 1
-                case 'R':
-                    head_pos["x"] += 1
-            hx, hy = head_pos["x"], head_pos["y"]
-            for tailidx, t in enumerate(tail):
-                tx, ty = t["x"], t["y"]
-                if tailidx == 0: # closest to head
-                    if ty > hy + 1: # up
-                        ty -= 1
-                        tx = hx if tx != hx else tx
-                    if ty < hy - 1: # down
-                        ty += 1
-                        tx = hx if tx != hx else tx
-                    if tx > hx + 1: # left
-                        tx -= 1
-                        ty = hy if ty != hy else ty
-                    if tx < hx - 1: # right
-                        tx += 1
-                        ty = hy if ty != hy else ty
-                else:
-                    tx_prev, ty_prev = tail[tailidx - 1]["x"], tail[tailidx - 1]["y"]
-                    if ty > ty_prev + 1:  # up
-                        ty -= 1
-                        tx = tx_prev if tx != tx_prev else tx
-                    if ty < ty_prev - 1:  # down
-                        ty += 1
-                        tx = tx_prev if tx != tx_prev else tx
-                    if tx > tx_prev + 1:  # left
-                        tx -= 1
-                        ty = ty_prev if ty != ty_prev else ty
-                    if tx < tx_prev - 1:  # right
-                        tx += 1
-                        ty = ty_prev if ty != ty_prev else ty
-
-                tail[tailidx]["x"] = tx
-                tail[tailidx]["y"] = ty
-            tailpath.append((tail[9]["x"], tail[9]["y"]))
-
-    return len(set(tailpath))
 
 def run():
-    print(f'Day 9 pt1: {part1()}')
-    print(f'Day 9 pt2: {part2()}')
+    moves: list[list[str]] = [d.split(' ') for d in read_list_of_strings('day9')]
+    print(f'Day 9 pt1: {day9_12(moves, 2)}')
+    print(f'Day 9 pt1: {day9_12(moves, 10)}')
 
-# Day 9 pt1:
-# Day 9 pt2:
+# Day 9 pt1: 6271
+# Day 9 pt1: 2458
