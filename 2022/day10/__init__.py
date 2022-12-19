@@ -46,7 +46,7 @@ def show_crt(crt):
 
 
 def run():
-    program = read_list_of_strings('day10', is_testdata=False)
+    program = read_list_of_strings('day10', use_testdata=False)
     print(f'Day 10 pt1: {part1(program)}')
     print('Day 10 pt2:')
     show_crt(part2(program))

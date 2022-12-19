@@ -11,16 +11,16 @@ def read_infile(filename, is_testdata: bool = False) -> str:
     return ''.join(content)
 
 
-def read_list_of_strings(filename, splitchar=None, is_testdata: bool = False) -> list[str]:
-    lines = [x.strip() for x in read_infile(filename, is_testdata).split('\n')]
+def read_list_of_strings(filename, splitchar=None, use_testdata: bool = False) -> list[str]:
+    lines = [x.strip() for x in read_infile(filename, use_testdata).split('\n')]
     return lines if not splitchar else [line.split(splitchar) for line in lines]
 
 
-def read_list_of_integers(filename, is_testdata: bool = False) -> list[int]:
-    content = [x.strip() for x in read_infile(filename, is_testdata)]
+def read_list_of_integers(filename, use_testdata: bool = False) -> list[int]:
+    content = [x.strip() for x in read_infile(filename, use_testdata)]
     return [int(x.strip()) for x in content]
 
 
-def read_csv_integers(filename, splitchar=',', is_testdata: bool = False) -> list[int]:
-    content = [x.strip() for x in read_infile(filename, is_testdata)]
+def read_csv_integers(filename, splitchar=',', use_testdata: bool = False) -> list[int]:
+    content = [x.strip() for x in read_infile(filename, use_testdata)]
     return [int(x.strip()) for x in content.split(splitchar)]
