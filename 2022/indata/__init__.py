@@ -3,8 +3,8 @@ from os.path import dirname, realpath, join
 infiles_path: str = dirname(realpath(__file__))
 
 
-def read_infile(filename, is_testdata: bool = False) -> str:
-    if is_testdata:
+def read_infile(filename, use_testdata: bool = False) -> str:
+    if use_testdata:
         filename += '_test'
     with open(join(infiles_path, f'{filename}.txt'), encoding='utf-8') as f:
         content = f.readlines()
