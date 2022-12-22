@@ -16,8 +16,7 @@ import day9
 
 # insert import before (don't remove this line)
 
-runall = False
-day13.run()
+runall = True
 
 if __name__ == '__main__':
     if runall:
