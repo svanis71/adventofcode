@@ -2,7 +2,7 @@
 
 day=$1 
 mkdir -p day${day} 
-echo "from indata import read_infile, read_list_of_strings, read_list_of_integers, read_csv_integers
+echo "from indata import read_infile, read_list_of_strings, read_list_of_integers
 
 
 def part1():

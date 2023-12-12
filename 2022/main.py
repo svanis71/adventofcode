@@ -15,9 +15,12 @@ import day7
 import day8
 import day9
 
+import day15
+import day16
 # insert import before (don't remove this line)
 
-runall = True
+runall = False
+day15.run()
 
 if __name__ == '__main__':
     if runall:
@@ -62,5 +65,11 @@ if __name__ == '__main__':
         print(f'Time: {perf_counter() - start} seconds')
         start = perf_counter()
         day14.run()
+        print(f'Time: {perf_counter() - start} seconds')
+        start = perf_counter()
+        day15.run()
+        print(f'Time: {perf_counter() - start} seconds')
+        start = perf_counter()
+        day16.run()
         print(f'Time: {perf_counter() - start} seconds')
         start = perf_counter()
