@@ -19,7 +19,11 @@ def run():
 
 
 # Day ${day} pt1: 
-# Day ${day} pt2: 
+# Day ${day} pt2:
+
+if __name__ == '__main__':
+    run()
+
 " > day${day}/__init__.py
 
 
