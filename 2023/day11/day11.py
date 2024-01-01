@@ -1,39 +1,35 @@
+import itertools
+
 from indata import read_list_of_strings
 
 
-def part1(expansion_size: int = 1):
-    indata = read_list_of_strings('day11', use_testdata=True)
-    galaxies, galaxy_pos = [], []
+def solution(indata: list[str], expansion_size: int = 1):
+    galaxy_pos = []
     insert_columns_here = [ic for ic, c in enumerate(indata) if '#' not in ''.join(c[ic] for c in indata)]
-    for ir, r in enumerate(indata):
-        expanded_row, offset = r, 1
-        for ix, xc in enumerate(insert_columns_here):
-            idx = xc + expansion_size * ix + 1
-            expanded_row = expanded_row[:idx] + '.' * expansion_size + expanded_row[idx:]
-        galaxies.append(expanded_row)
-        if not any(True for c in r if c == '#'):
-            galaxies += ['.'*len(expanded_row)]*expansion_size
-    for ir, row in enumerate(galaxies):
-        if not '#' in row:
-            continue
-        galaxy_pos += [(ir, ic) for ic, c in enumerate(row) if c == '#']
-    path_len = []
-    for ix, g1 in enumerate(galaxy_pos):
-        for g2 in galaxy_pos[ix+1:]:
-            path_len.append(abs(g1[0]-g2[0]) + abs(g1[1]-g2[1]))
-    return sum(path_len)
+    insert_rows_here = [ir for ir, r in enumerate(indata) if '#' not in r]
 
-def part2():
-    pass
+    for ir, row in enumerate(indata):
+        if '#' in row:
+            galaxy_pos += [(ir, ic) for ic, c in enumerate(row) if c == '#']
+
+    adjusted_galaxy_pos = []
+    for (y, x) in galaxy_pos:
+        how_many_expansions_x = len([q for q in insert_columns_here if q < x])
+        how_many_expansions_y = len([q for q in insert_rows_here if q < y])
+        new_x = x + expansion_size * how_many_expansions_x
+        new_y = y + expansion_size * how_many_expansions_y
+        adjusted_galaxy_pos.append((new_y, new_x))
+    return sum(abs(y2 - y1) + abs(x2 - x1) for (y1, x1), (y2, x2) in itertools.combinations(adjusted_galaxy_pos, 2))
 
 
 def run():
-    print(f'Day 11 pt1: {part1()}')
-    print(f'Day 11 pt2: {part1(99)}')
+    indata = read_list_of_strings('day11', use_testdata=False)
+    print(f'Day 11 pt1: {solution(indata)}')
+    print(f'Day 11 pt2: {solution(indata, 999999)}')
 
 
-# Day 11 pt1: 
-# Day 11 pt2:
+# Day 11 pt1: 9274989
+# Day 11 pt2: 357134560737
 
 if __name__ == '__main__':
     run()
