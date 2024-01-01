@@ -24,8 +24,9 @@ def run():
 if __name__ == '__main__':
     run()
 
-" > day${day}/__init__.py
+" > day${day}/day${day}.py
 
+echo "from .day${day} import run" > day${day}/__init__.py
 
 [ ! -d "indata" ] && mkdir indata
 touch indata/day${day}.txt
