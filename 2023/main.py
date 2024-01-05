@@ -3,6 +3,8 @@ from time import perf_counter
 import day1
 import day10
 import day11
+import day12
+import day13
 import day2
 import day3
 import day4
@@ -51,5 +53,11 @@ if __name__ == '__main__':
         print(f'Time: {perf_counter() - start} seconds')
         start = perf_counter()
         day11.run()
+        print(f'Time: {perf_counter() - start} seconds')
+        start = perf_counter()
+        day12.run()
+        print(f'Time: {perf_counter() - start} seconds')
+        start = perf_counter()
+        day13.run()
         print(f'Time: {perf_counter() - start} seconds')
         start = perf_counter()

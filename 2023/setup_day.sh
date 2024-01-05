@@ -2,20 +2,21 @@
 
 day=$1 
 mkdir -p day${day} 
-echo "from indata import read_infile, read_list_of_strings, read_list_of_integers
+echo "from indata import read_list_of_strings
 
 
-def part1():
+def part1(indata: list[str]):
     pass
 
 
-def part2():
+def part2(indata: list[str]):
     pass
 
 
 def run():
-    print(f'Day ${day} pt1: {part1()}')
-    print(f'Day ${day} pt2: {part2()}')
+    indata = read_list_of_strings('day${day}', use_testdata=True)
+    print(f'Day ${day} pt1: {part1(indata)}')
+    print(f'Day ${day} pt2: {part2(indata)}')
 
 
 # Day ${day} pt1: 
