@@ -16,6 +16,10 @@ def read_list_of_strings(filename, splitchar=None, use_testdata: bool = False) -
     return lines if not splitchar else [line.split(splitchar) for line in lines]
 
 
+def read_list_of_chars(filename, splitchar=None, use_testdata: bool = False) -> list[list[str]]:
+    return [list(x.strip()) for x in read_infile(filename, use_testdata).splitlines()]
+
+
 def read_list_of_integers(filename, use_testdata: bool = False) -> list[int]:
     content = [x.strip() for x in read_infile(filename, use_testdata)]
     return [int(x.strip()) for x in content]
