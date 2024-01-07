@@ -3,13 +3,10 @@ from collections import Counter
 from indata import read_list_of_chars
 
 NUM_CYCLES = 1_000_000_000
-
-
-class Direction:
-    NORTH = (-1, 0)
-    SOUTH = (1, 0)
-    WEST = (0, -1)
-    EAST = (0, 1)
+NORTH = (-1, 0)
+SOUTH = (1, 0)
+WEST = (0, -1)
+EAST = (0, 1)
 
 
 def part1(platform: list[list[str]]) -> int:
@@ -43,18 +40,17 @@ def run_cycle(platform: list[list[str]]):
     return tuple(''.join(x) for x in platform)
 
 
-def tilt_north(platform, direction: Direction = Direction.NORTH) -> None:
-    y_dir, x_dir = direction
+def tilt_north(platform) -> None:
+    y_dir, x_dir = NORTH
     for iy, line in enumerate(platform):
         for ix, col in enumerate(line):
             if col == 'O':
                 new_y, new_x = move_to((y_dir, x_dir), ix + x_dir, iy + y_dir, platform)
-                platform[iy][ix], platform[new_y - y_dir][new_x - x_dir] = platform[new_y - y_dir][new_x - x_dir], \
-                    platform[iy][ix]
+                platform[iy][ix], platform[new_y - y_dir][new_x] = platform[new_y - y_dir][new_x], platform[iy][ix]
 
 
 def tilt_west(platform) -> None:
-    y_dir, x_dir = Direction.WEST
+    y_dir, x_dir = WEST
     for iy, line in enumerate(platform):
         for ix, col in enumerate(line):
             if col == 'O':
@@ -63,7 +59,7 @@ def tilt_west(platform) -> None:
 
 
 def tilt_south(platform) -> None:
-    y_dir, x_dir = Direction.SOUTH
+    y_dir, x_dir = SOUTH
     for iy in range(len(platform) - 1, -1, -1):  # iy, line in enumerate(platform):
         line: list[str] = platform[iy]
         for ix, _ in enumerate(line):  # range(len(line) - 1, 0, -1):
@@ -73,15 +69,14 @@ def tilt_south(platform) -> None:
                 platform[iy][ix], platform[new_y - 1][new_x] = platform[new_y - 1][new_x], platform[iy][ix]
 
 
-def tilt_east(platform, direction: Direction = Direction.EAST) -> None:
-    y_dir, x_dir = direction
+def tilt_east(platform) -> None:
+    y_dir, x_dir = EAST
     for iy, line in enumerate(platform):
         for ix in range(len(line) - 1, -1, -1):
             col = line[ix]
             if col == 'O':
                 new_y, new_x = move_to((y_dir, x_dir), ix + x_dir, iy + y_dir, platform)
-                platform[iy][ix], platform[new_y - y_dir][new_x - x_dir] = platform[new_y - y_dir][new_x - x_dir], \
-                    platform[iy][ix]
+                platform[iy][ix], platform[new_y][new_x - x_dir] = platform[new_y][new_x - x_dir], platform[iy][ix]
 
 
 def move_to(direction: tuple[int, int], from_column: int, from_row: int, platform: list[list[str]]) -> tuple[int, int]:
