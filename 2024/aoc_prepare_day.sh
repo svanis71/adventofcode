@@ -5,9 +5,9 @@ if [ ! -e "main.py" ]; then
 
 # insert import before (don't remove this line)
 
-runall = True
+RUN_ALL_DAYS:bool = True
 if __name__ == '__main__':
-    if runall:
+    if RUN_ALL_DAYS:
         start = perf_counter()" > main.py
 fi
 
