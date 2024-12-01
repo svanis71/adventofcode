@@ -10,8 +10,7 @@ def part1(inlist: list[list[int]]) -> int:
 
 def part2(inlist: list[list[int]]):
     c = Counter([x[1] for x in inlist])
-    z = [(x, 0 if x not in c else c[x]) for x in [x[0] for x in inlist]]
-    return sum(a * b for (a, b) in z)
+    return sum(left * occurrences_in_right for (left, occurrences_in_right) in [(x, 0 if x not in c else c[x]) for x in [x[0] for x in inlist]])
 
 
 def run():
