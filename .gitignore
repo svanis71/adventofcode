@@ -135,3 +135,5 @@ build/
 .idea/
 
 input/
+indata/
+!indata/*test.txt
