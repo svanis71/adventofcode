@@ -5,7 +5,7 @@ from indata import read_list_of_strings
 
 def part1(inlist: list[list[int]]) -> int:
     left, right = sorted(x[0] for x in inlist), sorted(x[1] for x in inlist)
-    return sum(abs(a - right[ix]) for ix, a in enumerate(left))
+    return sum(abs(a - b) for a, b in zip(left, right))
 
 
 def part2(inlist: list[list[int]]):
