@@ -1,21 +1,7 @@
 from warnings import warn
 
-
-class Node:
-    """
-    A node class for A* Pathfinding
-    """
-
-    def __init__(self, parent=None, position: tuple[int, int] | None = None):
-        self.parent = parent
-        self.position = position
-
-        self.g = 0
-        self.h = 0
-        self.f = 0
-
-    def __eq__(self, other):
-        return self.position == other.position
+from pathfinding import get_adjacent_squares
+from .node import Node
 
 
 def return_path(current_node: Node):
@@ -48,9 +34,7 @@ def astar(maze: list[list[str]], start: tuple[int, int], end: tuple[int, int], a
     open_list.append(start_node)
 
     # what squares do we search
-    adjacent_squares = ((0, -1), (0, 1), (-1, 0), (1, 0),)
-    if allow_diagonal_movement:
-        adjacent_squares = ((0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1),)
+    adjacent_squares = get_adjacent_squares(allow_diagonal_movement)
 
     # Loop until you find the end
     while len(open_list) > 0:

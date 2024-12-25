@@ -1,6 +1,7 @@
 from collections import deque, defaultdict
 
 import indata
+from pathfinding import inbound
 
 
 def get_starting_points(matrix: list[list[int]]) -> list[tuple[int, int]]:
@@ -10,10 +11,6 @@ def get_starting_points(matrix: list[list[int]]) -> list[tuple[int, int]]:
             if c == 0:
                 starting_points.append((ir, ic))
     return starting_points
-
-
-def inbound(matrix, nxt_y, nxt_x) -> bool:
-    return 0 <= nxt_y < len(matrix) and 0 <= nxt_x < len(matrix[0])
 
 
 def get_neighbors(matrix, pos: tuple[int, int]) -> list[tuple[int, int]]:
