@@ -40,7 +40,7 @@ def check_for_tree(robot_data: list[dict]) -> bool:
             return True
     return False
 
-def part2(robot_data: list[dict], edge_x: int = 101, edge_y: int = 103) -> int:
+def part2(robot_data: list[dict], edge_x: int = 11, edge_y: int = 7) -> int:
     found_tree:bool = False
     turns:int = 0
     while not found_tree:
@@ -60,7 +60,7 @@ def run():
         v = list(map(int, v_string[2:].split(',')))
         robot_data.append({"robot_id": robot_id, "pos": p, "velocity": v})
     # 0,4 3,-3
-    print(f'Day 14 pt1: {part1(robot_data)}')
+    print(f'Day 14 pt1: {part1(robot_data, 11, 7)}')
     print(f'Day 14 pt2: {part2(robot_data)}')
 
 
