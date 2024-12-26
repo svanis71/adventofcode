@@ -30,7 +30,7 @@ def blink_all(p_stones: list[int], times: int) -> int:
 
 
 def run():
-    puzzle_data = indata.read_infile('day11', use_testdata=False)
+    puzzle_data = indata.read_infile('day11', use_testdata=True)
     stones: list[int] = [int(x) for x in puzzle_data.split(' ')]
     print(f'Day 11 pt1: {blink_all(stones, 25)}')
     print(f'Day 11 pt2: {blink_all(stones, 75)}')

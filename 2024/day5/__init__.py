@@ -25,7 +25,7 @@ def solve(puzzle_input: str) -> tuple[int, int]:
 
 
 def run():
-    puzzle_data = indata.read_infile('day5', use_testdata=False)
+    puzzle_data = indata.read_infile('day5', use_testdata=True)
     part1, part2 = solve(puzzle_data)
     print(f'Day 5 pt1: {part1}')
     print(f'Day 5 pt2: {part2}')

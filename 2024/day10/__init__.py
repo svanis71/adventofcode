@@ -39,7 +39,7 @@ def get_score(matrix, start, distinct: bool = False) -> int:
 
 
 def run():
-    puzzle_data = indata.read_list_of_strings('day10', use_testdata=False)
+    puzzle_data = indata.read_list_of_strings('day10', use_testdata=True)
     matrix = [[int(c) for c in r] for r in puzzle_data]
     print(f'Day 10 pt1: {sum(get_score(matrix, start) for start in (get_starting_points(matrix)))}')
     print(f'Day 10 pt2: {sum(get_score(matrix, start, True) for start in (get_starting_points(matrix)))}')

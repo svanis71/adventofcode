@@ -18,7 +18,7 @@ def part2(indata: list[list[int]]) -> int:
 
 
 def run():
-    indata = read_list_of_strings('day2', use_testdata=False)
+    indata = read_list_of_strings('day2', use_testdata=True)
     print(f'Day 2 pt1: {part1(indata)}')
     print(f'Day 2 pt2: {part2([[int(x) for x in line.split(" ")] for line in indata])}')
 

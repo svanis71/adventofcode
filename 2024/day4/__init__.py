@@ -43,7 +43,7 @@ def part2(indata: list[str]) -> int:
 
 
 def run():
-    indata = read_list_of_strings('day4', use_testdata=False)
+    indata = read_list_of_strings('day4', use_testdata=True)
     print(f'Day 4 pt1: {part1(indata)}')
     print(f'Day 4 pt2: {part2(indata)}')
 

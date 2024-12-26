@@ -30,7 +30,7 @@ def part2(indata: str):
 
 
 def run():
-    indata = read_infile('day3', use_testdata=False)
+    indata = read_infile('day3', use_testdata=True)
     print(f'Day 3 pt1: {part1(indata)}')
     print(f'Day 3 pt2: {part2(indata)}')
 

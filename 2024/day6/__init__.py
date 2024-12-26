@@ -49,7 +49,7 @@ def part2(puzzle_input: list[str], obstructions_pos: list[tuple[int, int]], star
 
 
 def run():
-    puzzle_data = indata.read_list_of_strings('day6', use_testdata=False)
+    puzzle_data = indata.read_list_of_strings('day6', use_testdata=True)
     obstructions_pos: list[tuple[int, int]] = []
 
     pos: tuple[int, int] = (0, 0)

@@ -15,7 +15,7 @@ def part2(inlist: list[list[int]]):
 
 def run():
     inlist = [[int(r[0]), int(r[1])] for r in [x.split('   ') for x in
-                                               (read_list_of_strings('day1', use_testdata=False))]]
+                                               (read_list_of_strings('day1', use_testdata=True))]]
     print(f'Day 1 pt1: {part1(inlist)}')
     print(f'Day 1 pt2: {part2(inlist)}')
 

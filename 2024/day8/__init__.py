@@ -46,7 +46,7 @@ def solution(puzzle_input: list[str], with_t_freq: bool = False) -> int:
 
 
 def run():
-    puzzle_data = indata.read_list_of_strings('day8', use_testdata=False)
+    puzzle_data = indata.read_list_of_strings('day8', use_testdata=True)
     print(f'Day 8 pt1: {solution(puzzle_data, with_t_freq=False)}')
     print(f'Day 8 pt2: {solution(puzzle_data, with_t_freq=True)}')
 

@@ -52,7 +52,7 @@ def part2(robot_data: list[dict], edge_x: int = 101, edge_y: int = 103) -> int:
 
 
 def run():
-    puzzle_data = indata.read_list_of_strings('day14', use_testdata=False)
+    puzzle_data = indata.read_list_of_strings('day14', use_testdata=True)
     robot_data: list[dict] = []
     for robot_id, line in enumerate(puzzle_data):
         p_string, v_string = line.split(' ')

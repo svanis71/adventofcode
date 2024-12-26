@@ -27,7 +27,7 @@ def solve(test_data: list[tuple[int, list[int]]], op_list: list[int]) -> int:
 
 
 def run():
-    puzzle_data = indata.read_list_of_strings('day7', use_testdata=False)
+    puzzle_data = indata.read_list_of_strings('day7', use_testdata=True)
     tests: list[tuple[int, list[int]]] = []
     for line in puzzle_data:
         test_value, nums = line.split(': ')

@@ -47,7 +47,7 @@ def sort_part2(disk, file_index, free_space):
 
 
 def run():
-    puzzle_data: str = indata.read_infile('day9', use_testdata=False)
+    puzzle_data: str = indata.read_infile('day9', use_testdata=True)
     blocks = list(map(int, list(puzzle_data)))
     disk, _, _ = create_disk(blocks)
     print(f'Day 9 pt1: {sum(file_id * pos for pos, file_id in enumerate(sort_part1(disk)) if file_id != -1)}')
